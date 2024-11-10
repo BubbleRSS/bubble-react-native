@@ -1,6 +1,7 @@
+import { ReactElement } from "react";
 import { FlavorsPage } from "@/presentation/pages/Flavors"
 
-export const makeFlavorsFactory = (): JSX.Element => {
+export const MakeFlavorsFactory = (): ReactElement => {
   return (
     <FlavorsPage />
   )

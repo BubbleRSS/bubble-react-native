@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  makeHomeFactory,
-  makeFlavorsFactory,
-  makeLikesFactory,
-  makeSettingsFactory
+  MakeHomeFactory,
+  MakeFlavorsFactory,
+  MakeLikesFactory,
+  MakeSettingsFactory
 } from '@/main/factories/pages';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderBase, HeaderSelect } from "@/presentation/components";
@@ -36,7 +36,7 @@ export const BottomTabNavigator: FC = () => {
     >
       <Tab.Screen
         name='Home'
-        component={makeHomeFactory}
+        component={MakeHomeFactory}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
@@ -55,7 +55,7 @@ export const BottomTabNavigator: FC = () => {
 
       <Tab.Screen
         name='Flavors'
-        component={makeFlavorsFactory}
+        component={MakeFlavorsFactory}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
@@ -72,7 +72,7 @@ export const BottomTabNavigator: FC = () => {
 
       <Tab.Screen
         name='Likes'
-        component={makeLikesFactory}
+        component={MakeLikesFactory}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
@@ -89,7 +89,7 @@ export const BottomTabNavigator: FC = () => {
 
       <Tab.Screen
         name='Settings'
-        component={makeSettingsFactory}
+        component={MakeSettingsFactory}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
