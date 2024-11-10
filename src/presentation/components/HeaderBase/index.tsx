@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     overflow: 'hidden',
-    paddingHorizontal: 20
+    padding: 0
   },
   fullWidthContainer: {
     flex: 1,
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFFFFF',
     fontSize: 18,
+    textAlign: 'center',
   },
   childrenContainer: {
     flex: 1,

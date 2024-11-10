@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { BottomTabNavigator } from "@/presentation/components";
+import { BottomTabNavigator } from "@/presentation/components/BottomTabNavigator";
 import { MakeAddTeaPageFactory } from "@/main/factories/pages";
 
 const Stack = createStackNavigator();

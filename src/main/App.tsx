@@ -1,8 +1,9 @@
-import '../../gesture-handler';
-import { Router } from "@/presentation/components";
+import { ReactElement } from "react";
 import { PaperProvider } from "react-native-paper";
+import { Router } from "@/presentation/components/Router";
+import '../../gesture-handler';
 
-export default function App(): JSX.Element {
+export default function App(): ReactElement {
   return (
     <PaperProvider>
       <Router />

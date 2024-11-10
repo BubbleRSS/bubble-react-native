@@ -7,8 +7,7 @@ import {
   MakeSettingsFactory
 } from '@/main/factories/pages';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { HeaderBase, HeaderSelect } from "@/presentation/components";
-import { TouchableOpacity } from "react-native";
+import { HeaderBase, HomeHeader } from "@/presentation/components";
 import { Appbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -52,14 +51,7 @@ export const BottomTabNavigator: FC = () => {
           ),
           header: () => (
             <HeaderBase>
-              <HeaderSelect />
-              <Appbar.Action
-                icon={(props) => (
-                  <MaterialCommunityIcons name="plus-box-outline" {...props} />
-                )}
-                color="#FFFFFF"
-                onPress={() => navigation.navigate('AddTea')}
-              />
+              <HomeHeader />
             </HeaderBase>
           )
         }}
