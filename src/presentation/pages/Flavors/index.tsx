@@ -1,7 +1,7 @@
-import React from 'react'
+import { FC } from 'react'
 import { View, Text } from 'react-native'
 
-export const FlavorsPage: React.FC = () => {
+export const FlavorsPage: FC = () => {
   return (
     <View>
       <Text>FlavorsPage</Text>
