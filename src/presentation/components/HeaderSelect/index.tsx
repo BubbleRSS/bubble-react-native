@@ -1,8 +1,14 @@
 import { FC, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Divider, Menu } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useHeaderSelectState } from "@/presentation/components";
+
+const dummySelectOptions = [
+  "Shopping",
+  "Work",
+  "Personal"
+]
 
 export const HeaderSelect: FC = () => {
   const [visible, setVisible] = useState(false);
@@ -28,11 +34,12 @@ export const HeaderSelect: FC = () => {
         </TouchableOpacity>
       }
     >
-      <Menu.Item onPress={() => handleSelectOption('Shopping')} title="Shopping" />
-      <Divider />
-      <Menu.Item onPress={() => handleSelectOption('Work')} title="Work" />
-      <Divider />
-      <Menu.Item onPress={() => handleSelectOption('Personal')} title="Personal" />
+      {dummySelectOptions.map((option, index) => (
+        <View key={option}>
+          <Menu.Item onPress={() => handleSelectOption(option)} title={option} />
+          {index < dummySelectOptions.length - 1 && <Divider />}
+        </View>
+      ))}
     </Menu>
   );
 }
