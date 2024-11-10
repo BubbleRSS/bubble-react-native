@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { makeHomeFactory } from '@/main/factories/pages';
-import { makeFlavorsFactory } from '@/main/factories/pages/flavors-factory';
-import { makeLikesFactory } from '@/main/factories/pages/likes-factory';
-import { makeSettingsFactory } from '@/main/factories/pages/settings-factory';
+import {
+  makeHomeFactory,
+  makeFlavorsFactory,
+  makeLikesFactory,
+  makeSettingsFactory
+} from '@/main/factories/pages';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { HeaderBase } from "@/presentation/components/HeaderBase";
+import { HeaderBase, HeaderSelect } from "@/presentation/components";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,7 +46,9 @@ export const BottomTabNavigator: FC = () => {
             />
           ),
           header: () => (
-            <HeaderBase title='Home' />
+            <HeaderBase>
+              <HeaderSelect />
+            </HeaderBase>
           )
         }}
       />
