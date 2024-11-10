@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Appbar } from "react-native-paper";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type HeaderBaseProps = {
   title?: string;
@@ -9,23 +9,18 @@ type HeaderBaseProps = {
 
 export const HeaderBase: FC<HeaderBaseProps> = ({ children, title }) => {
   return (
-    <>
-      <Appbar.Header style={styles.header}>
-        {title &&
+    <Appbar.Header style={styles.header} >
+      <View style={styles.fullWidthContainer}>
+        {title && (
           <Appbar.Content
-            title={
-              <View style={styles.titleArea}>
-                <Text style={styles.title}>
-                  {title}
-                </Text>
-              </View>
-            }
+            title={title}
+            titleStyle={styles.title}
+            style={styles.appBarContent}
           />
-        }
-
-        {children}
-      </Appbar.Header>
-    </>
+        )}
+        {children && <View style={styles.childrenContainer}>{children}</View>}
+      </View>
+    </Appbar.Header>
   );
 };
 
@@ -35,14 +30,27 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     overflow: 'hidden',
-    display: 'flex',
-    justifyContent: 'center'
+    paddingHorizontal: 20
   },
-  titleArea: {
-    display: 'flex',
-    alignItems: 'center'
+  fullWidthContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '100%'
+  },
+  appBarContent: {
+    flex: 1,
   },
   title: {
     color: '#FFFFFF',
-  }
-})
+    fontSize: 18,
+  },
+  childrenContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '100%'
+  },
+});

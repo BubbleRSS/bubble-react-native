@@ -4,11 +4,7 @@ import { Divider, Menu } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useHeaderSelectState } from "@/presentation/components";
 
-const dummySelectOptions = [
-  "Shopping",
-  "Work",
-  "Personal"
-]
+const dummySelectOptions = ["Shopping", "Work", "Personal"];
 
 export const HeaderSelect: FC = () => {
   const [visible, setVisible] = useState(false);
@@ -33,6 +29,7 @@ export const HeaderSelect: FC = () => {
           <MaterialCommunityIcons name="chevron-down" size={20} color="#FFFFFF" />
         </TouchableOpacity>
       }
+      anchorPosition='bottom'
     >
       {dummySelectOptions.map((option, index) => (
         <View key={option}>
@@ -42,17 +39,20 @@ export const HeaderSelect: FC = () => {
       ))}
     </Menu>
   );
-}
+};
 
 const styles = StyleSheet.create({
   selectContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    borderRadius: 5,
+    flex: 1,
+    justifyContent: 'center',
+    height: '100%'
   },
   selectText: {
     color: '#FFFFFF',
     fontSize: 18,
     marginRight: 5,
-  }
+  },
 });

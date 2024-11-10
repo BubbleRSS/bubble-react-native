@@ -8,10 +8,15 @@ import {
 } from '@/main/factories/pages';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderBase, HeaderSelect } from "@/presentation/components";
+import { TouchableOpacity } from "react-native";
+import { Appbar } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTabNavigator: FC = () => {
+  const navigation = useNavigation();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -48,6 +53,13 @@ export const BottomTabNavigator: FC = () => {
           header: () => (
             <HeaderBase>
               <HeaderSelect />
+              <Appbar.Action
+                icon={(props) => (
+                  <MaterialCommunityIcons name="plus-box-outline" {...props} />
+                )}
+                color="#FFFFFF"
+                onPress={() => navigation.navigate('AddTea')}
+              />
             </HeaderBase>
           )
         }}
