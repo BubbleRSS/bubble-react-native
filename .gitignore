@@ -18,3 +18,9 @@ web-build/
 
 expo-env.d.ts
 # @end expo-cli
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/.gitignore
+/.idea/bubble-react-native.iml
+/.idea/cat-activity.xml
+/.idea/modules.xml
+/.idea/vcs.xml
