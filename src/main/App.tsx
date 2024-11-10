@@ -1,3 +1,4 @@
+import '../../gesture-handler';
 import { Router } from "@/presentation/components/Router";
 import { PaperProvider } from "react-native-paper";
 

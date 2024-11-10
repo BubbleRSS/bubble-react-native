@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { BottomTabNavigator } from '@/presentation/components/BottomTabNavigator';
+import { StackNavigator } from "@/presentation/components/StackNavigator";
 
 export const Router: FC = () => {
   return (
-    <BottomTabNavigator />
+    <StackNavigator />
   )
 }
