@@ -1,7 +1,7 @@
-import React from 'react'
+import { FC } from 'react'
 import { View, Text } from 'react-native'
 
-export const SavedBubblesPage: React.FC = () => {
+export const LikesPage: FC = () => {
   return (
     <View>
       <Text>SavedBubblesPage</Text>
