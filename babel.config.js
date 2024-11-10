@@ -8,7 +8,8 @@ module.exports = function (api) {
         {
           alias: { '@': './src/' },
           extensions: ['.tsx', '.ts', '.js', '.json']
-        }
+        },
+        'react-native-paper/babel'
       ],
     ]
   };
