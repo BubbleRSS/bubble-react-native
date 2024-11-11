@@ -9,7 +9,7 @@ type HeaderBaseProps = {
 
 export const HeaderBase: FC<HeaderBaseProps> = ({ children, title }) => {
   return (
-    <Appbar.Header style={styles.header} >
+    <View style={styles.header}>
       <View style={styles.fullWidthContainer}>
         {title && (
           <Appbar.Content
@@ -20,7 +20,7 @@ export const HeaderBase: FC<HeaderBaseProps> = ({ children, title }) => {
         )}
         {children && <View style={styles.childrenContainer}>{children}</View>}
       </View>
-    </Appbar.Header>
+    </View>
   );
 };
 
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     overflow: 'hidden',
-    padding: 0
+    padding: 0,
+    height: 64,
   },
   fullWidthContainer: {
     flex: 1,
