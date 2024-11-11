@@ -2,8 +2,11 @@ import React, { FC } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Appbar } from "react-native-paper";
+import { useFlavorFullScreenPickerState } from "@/presentation/components/atoms";
 
 export const HomeHeader: FC = () => {
+  const { setIsOpen } = useFlavorFullScreenPickerState();
+
   return (
     <>
       <TouchableOpacity style={styles.selectContainer} onPress={() => {}}>
@@ -17,7 +20,7 @@ export const HomeHeader: FC = () => {
         color="#FFFFFF"
         style={styles.addTeaButton}
         animated={false}
-        onPress={() => {}}
+        onPress={() => setIsOpen(true)}
       />
     </>
   );

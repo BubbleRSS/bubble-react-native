@@ -1,1 +1,1 @@
-export * from './header-select-atom';
+export * from './flavor-full-screen-selector-atom';
