@@ -6,19 +6,21 @@ import {
   MakeLikesFactory,
   MakeSettingsFactory
 } from '@/main/factories/pages';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import { BaseHeader } from '@/presentation/components/BaseHeader';
 
 const Tab = createBottomTabNavigator();
 
 export const BottomTabNavigator: FC = () => {
-  const navigation = useNavigation();
-
   return (
     <Tab.Navigator>
       <Tab.Screen
         name='Home'
         component={MakeHomeFactory}
+        options={{
+          header: () => (
+            <BaseHeader title='Bubble' />
+          )
+        }}
       />
 
       <Tab.Screen
