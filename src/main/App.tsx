@@ -1,10 +1,12 @@
+import '../../gesture-handler';
+
 import { ReactElement } from "react";
-import { View } from "react-native";
 import { registerRootComponent } from 'expo';
+import { Router } from '@/presentation/components/Router';
 
 function App(): ReactElement {
   return (
-    <View>Hello World!</View>
+    <Router />
   )
 }
 
