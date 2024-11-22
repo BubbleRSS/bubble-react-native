@@ -1,10 +1,26 @@
 import { FC } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
+import { FlavorsRepository } from '@/data/repositories'
 
-export const HomePage: FC = () => {
+type HomePageProps = {
+  flavorsRep: FlavorsRepository
+}
+
+export const HomePage: FC<HomePageProps> = ({ flavorsRep }) => {
+  const onClick = async () => {
+    await flavorsRep.register({
+      name: 'teste',
+      color: '#ccc'
+    });
+  };
+
   return (
     <View>
       <Text>FeedPage</Text>
+
+      <TouchableOpacity onPress={onClick}>
+        Click
+      </TouchableOpacity>
     </View>
   )
 }

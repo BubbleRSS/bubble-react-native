@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["reactNative"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url = "file:../db/bubble.db"
+}
+
+// category
+model Flavor {
+  id Int @id @default(autoincrement())
+  name String
+  color String
+  teas Tea[]
+}
+
+// rssLink
+model Tea {
+  id Int @id @default(autoincrement())
+  name String
+  rssLink String
+  iconLink String
+  flavor Flavor @relation(fields: [flavorId], references: [id])
+  flavorId Int
+}
+
+// liked post from rssLink
+model LikedBubble {
+  id Int @id @default(autoincrement())
+  teaId Int
+  title String
+  description String
+  imageLink String
+  postLink String
+  publishedAt DateTime
+}
