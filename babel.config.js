@@ -7,6 +7,7 @@ module.exports = function (api) {
         alias: { '@': './src/' },
         extensions: ['.tsx', '.ts', '.js', '.json']
       }],
+      ["inline-import", { "extensions": [".sql"] }]
     ]
   };
 };
