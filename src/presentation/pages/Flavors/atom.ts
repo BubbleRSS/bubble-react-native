@@ -24,12 +24,12 @@ type FlavorsStateProps = {
   flavors: FlavorProps[],
   setFlavors: (flavors: FlavorProps[]) => void
   addFlavor: (newFlavor: FlavorProps) => void
-  removeFlavor: (flavorId: number) => void
+  deleteFlavor: (flavorId: number) => void
 }
 
 export const useFlavorsState = create<FlavorsStateProps>((set) => ({
   flavors: [],
   setFlavors: (flavors) => set({ flavors }),
   addFlavor: (newFlavor) => set((state) => ({ flavors: [ ...state.flavors, newFlavor ] })),
-  removeFlavor: (flavorId) => set((state) => ({ flavors: state.flavors.filter(t => t.id !== flavorId) }))
+  deleteFlavor: (flavorId) => set((state) => ({ flavors: state.flavors.filter(t => t.id !== flavorId) }))
 }))

@@ -1,76 +1,60 @@
-import { useSQLiteContext } from 'expo-sqlite';
 import { FC, useEffect } from 'react'
-import { Alert, Button, FlatList, Pressable, TextInput } from 'react-native';
-import { View, Text, SafeAreaView } from 'react-native'
-import { FlavorProps, useFlavorFormState, useFlavorsState } from './atom';
-import { drizzle } from 'drizzle-orm/expo-sqlite';
-import * as flavorSchema from "@/infra/db/drizzle/schemas/flavorSchema";
-import { asc, eq } from 'drizzle-orm';
+import { Alert, Button, FlatList, Pressable, TextInput, Text, SafeAreaView } from 'react-native';
+import { FlavorsRepository } from "@/data/repositories";
+import { useFlavorFormState, useFlavorsState } from './atom';
 
-export const FlavorsPage: FC = () => {
+type FlavorsPageProps = {
+  flavorsRepository: FlavorsRepository;
+}
+
+export const FlavorsPage: FC<FlavorsPageProps> = ({ flavorsRepository }) => {
   const { name, color, setName, setColor } = useFlavorFormState();
-  const { flavors, addFlavor, setFlavors, removeFlavor } = useFlavorsState();
+  const { flavors, addFlavor, setFlavors, deleteFlavor } = useFlavorsState();
 
-  const database = useSQLiteContext()
-  const db = drizzle(database, { schema: flavorSchema })
-
-  async function fetchFlavors() {
-    try {
-      const response = await db.query.flavor.findMany({
-        orderBy: [asc(flavorSchema.flavor.name)],
+  const getAllFlavors = () => {
+    flavorsRepository
+      .findAll()
+      .then((response) => {
+        setFlavors(response);
       })
-
-      setFlavors(response)
-    } catch (error) {
-      console.log(error)
-    }
+      .catch((error) => Alert.alert("Error: " + error));
   }
 
-  async function add() {
+  const registerFlavor = () => {
     if (name) {
-      try {
-        const response = await db.insert(flavorSchema.flavor).values({ name, color })
-  
-        Alert.alert("Registered with ID: " + response.lastInsertRowId);
-  
-        addFlavor({
-          id: response.lastInsertRowId,
+      flavorsRepository
+        .register({
           name,
           color
-        });
-  
-        setName("");
-        setColor("");
-      } catch (error) {
-        console.log(error)
-      }
+        })
+        .then((response) => {
+          addFlavor(response);
+
+          setName("");
+          setColor("");
+        })
+        .catch((error) => Alert.alert("Error: " + error));
     }
   }
 
-  async function remove(id: number) {
-    try {
-      Alert.alert("Remove", "Do you really want to remove?", [
-        {
-          text: "Cancel",
-          style: "cancel",
+  const removeFlavors = (id: number) => {
+    Alert.alert("Remove", "Do you really want to remove?", [
+      { text: "Cancel",  style: "cancel" },
+      {
+        text: "Yes, why not",
+        onPress: async () => {
+          flavorsRepository
+            .remove({ id })
+            .then((response) => {
+              deleteFlavor(response);
+            })
+            .catch((error) => Alert.alert("Error: " + error));
         },
-        {
-          text: "Yes, why not",
-          onPress: async () => {
-            await db
-              .delete(flavorSchema.flavor)
-              .where(eq(flavorSchema.flavor.id, id))
-
-            removeFlavor(id);
-          },
-        },
-      ])
-    } catch (error) {
-      console.log(error)
-    }
+      },
+    ]);
   }
 
-  function show(id: number) {
+  const detailFlavor = (id: number) => {
     const flavor = flavors.find(t => t.id === id);
 
     if (flavor) {
@@ -81,7 +65,7 @@ export const FlavorsPage: FC = () => {
   }
 
   useEffect(() => {
-    fetchFlavors()
+    getAllFlavors();
   }, [])
 
   return (
@@ -121,8 +105,8 @@ export const FlavorsPage: FC = () => {
         value={color}
       />  
 
-      <Button title="Save" onPress={add} />
-      <Button title="Refresh DB" onPress={fetchFlavors} />
+      <Button title="Save" onPress={registerFlavor} />
+      <Button title="Refresh DB" onPress={getAllFlavors} />
 
       <FlatList
         data={flavors}
@@ -130,8 +114,8 @@ export const FlavorsPage: FC = () => {
         renderItem={({ item }) => (
           <Pressable
             style={{ padding: 16, borderWidth: 1, borderRadius: 7 }}
-            onLongPress={() => remove(item.id)}
-            onPress={() => show(item.id)}
+            onLongPress={() => removeFlavors(item.id)}
+            onPress={() => detailFlavor(item.id)}
           >
             <Text>{item.name}</Text>
           </Pressable>
